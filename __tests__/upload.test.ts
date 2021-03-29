@@ -1,5 +1,5 @@
 import * as upload from '../src/upload'
-import { writeFile, rm } from 'fs/promises'
+import * as fs from 'fs'
 import { mocked } from 'ts-jest/utils'
 
 jest.spyOn(upload, 'uploadBlob')
@@ -13,8 +13,8 @@ describe('upload-azure-blob => upload.ts', () => {
 
   beforeAll(async () => {
     const data = new Uint8Array(Buffer.from('Hello Node.js'));
-    await writeFile(FILENAME, data);
-    await writeFile(FILENAME2, data);
+    await fs.promises.writeFile(FILENAME, data);
+    await fs.promises.writeFile(FILENAME2, data);
   })
 
   test('uploadBlobs calls uploadBlob with one file', async () => {
@@ -33,7 +33,7 @@ describe('upload-azure-blob => upload.ts', () => {
   })
 
   afterAll(async () => {
-    await rm(FILENAME);
-    await rm(FILENAME2);
+    await fs.promises.rm(FILENAME);
+    await fs.promises.rm(FILENAME2);
   })
 })
