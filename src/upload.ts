@@ -39,20 +39,22 @@ export const getBlobServiceClient = (account: string): BlobServiceClient => {
     `https://${account}.blob.core.windows.net`,
     defaultAzureCredential
   )
-  
+
   return blobServiceClient
 }
 
 // Upload `filename` to Azure Blob Storage using authenticated `client`
-export const uploadBlob = async (client: ContainerClient, filename: string) => {
+export const uploadBlob = async (client: ContainerClient, filename: string): Promise<Output> => {
   core.debug(`Reading file ${filename}`)
-  
+
+  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
   if (!client.containerName || !filename) {
     return {}
   }
 
   const file = await fsPromises.readFile(filename, 'utf-8')
-  let output: Output = <Output>{}
+  // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+  let output: Output = {} as Output
 
   core.debug(`${filename} contents: ${file}`)
 
@@ -83,10 +85,10 @@ export const uploadBlobs = async (client: ContainerClient, pattern: string): Pro
   const filenames = await glob(pattern)
 
   core.debug(`filenames: ${JSON.stringify(filenames)}`)
-  if (!filenames.length) {
-    core.warning(`No files found for input source = ${pattern}`);
+  if (filenames.length === 0) {
+    core.warning(`No files found for input source = ${pattern}`)
   }
-  const outputs: Output[] = await Promise.all(filenames.map((filename) => uploadBlob(client, filename)))
+  const outputs: Output[] = await Promise.all(filenames.map(async (filename) => await uploadBlob(client, filename)))
 
   return outputs
 }
