@@ -33,7 +33,7 @@ describe('upload-azure-blob => upload.ts', () => {
   })
 
   afterAll(async () => {
-    await fs.promises.rm(FILENAME);
-    await fs.promises.rm(FILENAME2);
+    await fs.promises.unlink(FILENAME);
+    await fs.promises.unlink(FILENAME2);
   })
 })
