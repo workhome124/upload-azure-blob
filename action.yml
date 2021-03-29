@@ -1,0 +1,32 @@
+name: 'Upload blob to Azure Storage'
+description: 'Example action to upload blob to Azure Storage'
+author: 'GitHub'
+branding:
+  color: 'blue'
+  icon: 'upload-cloud'
+inputs:
+  account:
+    description: |-
+      Storage account name, e.g. 'mystorageaccount'
+    required: true
+
+  destination:
+    description: |-
+      Name of container to upload blob to, e.g. '$web' to upload a static website.
+    required: true
+
+  source:
+    description: |-
+      Path to file(s) to upload to "destination", e.g. '.' to upload all files in the current directory.
+      Supports globbing, e.g. 'images/**.jpg'.
+      For more information, please refer to https://www.npmjs.com/package/glob.
+    required: true
+
+outputs:
+  urls:
+    description: |-
+      URL(s) to the uploaded blob(s), if successful
+
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
