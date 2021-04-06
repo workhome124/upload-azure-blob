@@ -39,18 +39,18 @@ Simple example:
   with:
     creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-# Upload `.jpg`s to Azure Blob Storage
-- name: Upload all JPGs to Azure Blob Storage
+# Upload `.png`s to Azure Blob Storage
+- name: Upload all PNGs to Azure Blob Storage
   id: upload
   uses: github-developer/upload-azure-blob@v1
   with:
     account: octodex
     destination: octocats
-    source: '**/*.jpg'
+    source: '**/*.png'
 
 # Print out the urls to uploaded files
 - name: Print URLs
-  run: echo $URLS # { ["filename":"hulatocat.jpg","url":"https://octodex.blob.core.windows.net/octocats/hulatocat.jpg"] }
+  run: echo $URLS # { ["filename":"hulatocat.png","url":"https://octodex.blob.core.windows.net/octocats/hulatocat.png"] }
   env:
     URLS: ${{ steps.upload.outputs.urls }}
 
@@ -61,7 +61,7 @@ Simple example:
 
 - `account` (required): Storage account name, e.g. `mystorageaccount`
 - `destination` (required): Name of container to upload blob to, e.g. `$web` to upload a static website.
-- `source` (required): Path to file(s) to upload to `destination`, e.g. `.` to upload all files in the current directory. Supports globbing, e.g. `images/**.jpg`. For more information, please refer to https://www.npmjs.com/package/glob.
+- `source` (required): Path to file(s) to upload to `destination`, e.g. `.` to upload all files in the current directory. Supports globbing, e.g. `images/**.png`. For more information, please refer to https://www.npmjs.com/package/glob.
 
 ### Outputs
 
