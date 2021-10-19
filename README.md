@@ -6,7 +6,7 @@
 
 This is an _example_ GitHub action built in TypeScript that uploads file(s) to [Azure Blob Storage](https://azure.microsoft.com/en-us/services/storage/blobs/), a "massively scalable and secure object storage for cloud-native workloads, archives, data lakes, high-performance computing, and machine learning".
 
-Note: this action is meant solely for demonstration purposes. Best viewed together with the accompanying [blog post](TODO).
+Note: this action is meant solely for demonstration purposes. Best viewed together with the accompanying [blog post](https://devblogs.microsoft.com/devops/building-your-first-github-action/).
 
 For more about GitHub Actions, refer to [the documentation](https://docs.github.com/en/actions/creating-actions).
 
