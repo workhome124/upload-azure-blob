@@ -27,7 +27,7 @@
     "@actions/core": "^1.2.6",
     "@azure/identity": "^1.2.5",
     "@azure/storage-blob": "^12.5.0",
-    "glob": "^7.1.6",
+    "glob": "^11.0.2",
     "ts-standard": "^10.0.0"
   },
   "devDependencies": {
